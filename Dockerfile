@@ -5,6 +5,7 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 COPY /Saqartvel .
 COPY Saqartvel/entrypoint.sh .
+VOLUME /.envs:/app/.env
 
 ENTRYPOINT ["bash", "entrypoint.sh"]
 EXPOSE 8000
