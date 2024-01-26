@@ -9,8 +9,6 @@ services:
       DB_HOST: postgres
     volumes:
       - ./Saqartvel/:/app
-    env_file:
-      - /app/.env
     depends_on:
       postgres:
         condition: service_healthy
