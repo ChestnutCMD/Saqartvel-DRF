@@ -5,18 +5,18 @@ services:
   api:
     image: cheshtnut/saqartvel-DRF:$GITHUB_REF_NAME-$GITHUB_RUN_ID
     restart: always
-    env_file:
-      - .envs
     environment:
       DB_HOST: postgres
     volumes:
       - ./Saqartvel/:/app
       - ./.envs:/app/.env
+    env_file:
+      - /app/.env
     depends_on:
       postgres:
         condition: service_healthy
     ports:
-      - '8000:8000'
+      - '8080:8000'
 
   postgres:
     image: postgres
