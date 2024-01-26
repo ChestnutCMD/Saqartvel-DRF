@@ -3,7 +3,7 @@ version: '3.9'
 services:
 
   api:
-    image: cheshtnut/saqartvel-DRF:$GITHUB_REF_NAME-$GITHUB_RUN_ID
+    image: cheshtnut/saqartvel-drf:$GITHUB_REF_NAME-$GITHUB_RUN_ID
     restart: always
     environment:
       DB_HOST: postgres
