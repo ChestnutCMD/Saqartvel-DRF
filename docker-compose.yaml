@@ -5,8 +5,6 @@ services:
   api:
     image: cheshtnut/saqartvel-drf:$GITHUB_REF_NAME-$GITHUB_RUN_ID
     restart: always
-    environment:
-      DB_HOST: postgres
     volumes:
       - ./Saqartvel/:/app
     depends_on:
