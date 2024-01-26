@@ -3,9 +3,7 @@ version: '3.9'
 services:
 
   api:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: cheshtnut/saqartvel-DRF:$GITHUB_REF_NAME-$GITHUB_RUN_ID
     restart: always
     env_file:
       - .env
