@@ -28,10 +28,12 @@ jobs:
           fi
           cat docker-compose.yaml | envsubst > deploy/docker-compose.yaml
       - name: Copy files to server
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
-          eval \$(ssh-agent -s)
-          ssh-add <(echo \${{ secrets.PASSWORD }})
-          scp -i ssh_key_path deploy/docker-compose.yaml deploy/.env.decrypted ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/app
+          echo "$SSH_PRIVATE_KEY" > ssh_key
+          chmod 600 ssh_key
+          scp -i ssh_key deploy/docker-compose.yaml deploy/.env.decrypted ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/app
       - name: Deploy app
         run: |
-          ssh -i ssh_key_path ${{ secrets.USERNAME }}@${{ secrets.HOST }} "cd /app && docker-compose up -d"
+          ssh -i ssh_key ${{ secrets.USERNAME }}@${{ secrets.HOST }} "cd /app && docker-compose up -d"
