@@ -36,7 +36,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.PASSWORD }}
           source: "deploy/docker-compose.yaml,deploy/.env"
-          target: "/path/to/app"
+          target: "/app"
           strip_components: 1
       - name: Deploy app
         uses: appleboy/ssh-action@master
@@ -45,5 +45,5 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /path/to/app
+            cd /app
             docker-compose up -d
