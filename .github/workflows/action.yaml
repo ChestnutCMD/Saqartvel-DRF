@@ -23,7 +23,9 @@ jobs:
           echo "${{ secrets.VAULT_KEY }}" | ansible-vault decrypt deploy/.env --output=deploy/.env.decrypted
       - name: Render configs
         run: |
-          mkdir deploy
+          if [ ! -d "deploy" ]; then
+            mkdir deploy
+          fi
           cat docker-compose.yaml | envsubst > deploy/docker-compose.yaml
       - name: Copy files to server
         run: |
