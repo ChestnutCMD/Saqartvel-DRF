@@ -22,8 +22,9 @@ jobs:
       DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
       DB_NAME: ${{ secrets.DB_NAME }}
     steps:
-      - name: decrypt env
-        uses: anthonykgross/ansible-vault-cli-github-action@v1
+      - name: Checkout
+        uses: actions/checkout@v3
+      - uses: anthonykgross/ansible-vault-cli-github-action@v1
         with:
           vault_key: ${{ secrets.VAULT_KEY }}
           command: 'ansible-vault decrypt deploy/.env'
