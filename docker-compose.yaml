@@ -6,7 +6,7 @@ services:
     image: $DOCKER_USERNAME/saqartvel-drf:$GITHUB_REF_NAME-$GITHUB_RUN_ID
     restart: always
     env_file:
-      - deploy/.env
+      - ./.env
     environment:
       DB_HOST: postgres
     depends_on:
