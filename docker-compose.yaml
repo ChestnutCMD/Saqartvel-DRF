@@ -3,7 +3,7 @@ version: '3.9'
 services:
 
   api:
-    image: ${DOCKER_USERNAME}/saqartvel-drf:$GITHUB_REF_NAME-$GITHUB_RUN_ID
+    image: $DOCKER_USERNAME/saqartvel-drf:$GITHUB_REF_NAME-$GITHUB_RUN_ID
     restart: always
     env_file:
       - .env
@@ -20,13 +20,13 @@ services:
     image: postgres:13.0-alpine
     restart: on-failure
     environment:
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: $DB_USER
+      POSTGRES_PASSWORD: $DB_PASSWORD
+      POSTGRES_DB: $DB_NAME
     ports:
       - '5432:5432'
     healthcheck:
-      test: pg_isready -U ${DB_USER} -d ${DB_NAME}
+      test: pg_isready -U $DB_USER -d $DB_NAME
       interval: 5s
       timeout: 3s
       retries: 3
