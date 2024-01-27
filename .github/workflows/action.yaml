@@ -29,7 +29,7 @@ jobs:
           cat docker-compose.yaml | envsubst > deploy/docker-compose.yaml
       - name: Copy files to server
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_PRIVATE_KEY: ${{ secrets.PASSWORD }}
         run: |
           echo "$SSH_PRIVATE_KEY" > ssh_key
           chmod 600 ssh_key
