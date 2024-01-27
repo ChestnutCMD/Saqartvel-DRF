@@ -128,6 +128,8 @@ REST_FRAMEWORK = {
                                        ],
 }
 
+CSRF_TRUSTED_ORIGINS = ['https://saqartvel.store']
+
 # SPECTACULAR_SETTINGS = {
 #     'TITLE': 'Saqartvel',
 #     'DESCRIPTION': 'Discounts',
