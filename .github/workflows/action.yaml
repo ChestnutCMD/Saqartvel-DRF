@@ -19,9 +19,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Decrypt .env file
-        uses: okteto/decrypt-secrets@v1
-        with:
-          secrets: ${{ secrets.VAULT_KEY }}
+        run: |
+          ansible-vault decrypt deploy/.env --vault-password-file=.vault_pass
+        env:
+          VAULT_PASS: ${{ secrets.VAULT_KEY }}
       - name: Render configs
         run: |
           mkdir deploy
@@ -40,7 +41,7 @@ jobs:
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          key: ${{ secrets.PASSWORD }}
           script: |
             cd /app
             docker-compose up -d
