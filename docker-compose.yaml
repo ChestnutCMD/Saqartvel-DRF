@@ -3,18 +3,12 @@ version: '3.9'
 services:
 
   api:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: cheshtnut/saqartvel-drf:$GITHUB_REF_NAME-$GITHUB_RUN_ID
+    image: ${DOCKER_USERNAME}/saqartvel-drf:$GITHUB_REF_NAME-$GITHUB_RUN_ID
     restart: always
     env_file:
       - ./.env
     environment:
       DB_HOST: postgres
-    volumes:
-      - ./Saqartvel/:/app
-      - ./.envs:/app/.env
     depends_on:
       postgres:
         condition: service_healthy
