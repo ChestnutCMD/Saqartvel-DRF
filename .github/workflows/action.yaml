@@ -18,9 +18,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Decrypt .env file
-        run: |
-          echo "${{ secrets.VAULT_KEY }}" | ansible-vault decrypt deploy/.env --output=deploy/.env.decrypted
+      - uses: anthonykgross/ansible-vault-cli-github-action@v1
+        with:
+          vault_key: ${{ secrets.VAULT_KEY }}
+          command: 'ansible-vault decrypt deploy/.env'
       - name: Render configs
         run: |
           if [ ! -d "deploy" ]; then
@@ -33,8 +34,8 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          source: "deploy/docker-compose.yaml,deploy/.env.decrypted"
-          target: "app"
+          source: "deploy/docker-compose.yaml,deploy/.env"
+          target: app
           strip_components: 1
       - name: deploy app
         uses: appleboy/ssh-action@master
