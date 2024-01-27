@@ -14,7 +14,7 @@ jobs:
         run: docker push ${{ secrets.DOCKER_USERNAME }}/saqartvel-drf:$GITHUB_REF_NAME-$GITHUB_RUN_ID
 
   deploy:
-    runs-on: ubuntu:latest
+    runs-on: ubuntu-latest
     needs: build_and_push
     steps:
       - name: Checkout
