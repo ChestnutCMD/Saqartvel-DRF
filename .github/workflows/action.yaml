@@ -20,6 +20,7 @@ jobs:
       DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
       DB_NAME: ${{ secrets.DB_NAME }}
       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY}}
     steps:
       - name: clone code
         uses: actions/checkout@v2
@@ -30,10 +31,6 @@ jobs:
           fi
           cat docker-compose.yaml | envsubst > deploy/docker-compose.yaml
           cat .env | envsubst > deploy/.env
-      - uses: anthonykgross/ansible-vault-cli-github-action@v1
-        with:
-          vault_key: ${{ secrets.VAULT_KEY }}
-          command: 'ansible-vault decrypt deploy/.env'
       - name: copy files to server
         uses: appleboy/scp-action@master
         with:
