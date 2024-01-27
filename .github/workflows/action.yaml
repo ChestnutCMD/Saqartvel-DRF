@@ -29,7 +29,9 @@ jobs:
           cat docker-compose.yaml | envsubst > deploy/docker-compose.yaml
       - name: Copy files to server
         run: |
-          scp -i ${{ secrets.PASSWORD }} deploy/docker-compose.yaml deploy/.env.decrypted ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/app
+          eval \$(ssh-agent -s)
+          ssh-add <(echo \${{ secrets.PASSWORD }})
+          scp -i ssh_key_path deploy/docker-compose.yaml deploy/.env.decrypted ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/app
       - name: Deploy app
         run: |
-          ssh -i ${{ secrets.PASSWORD }} ${{ secrets.USERNAME }}@${{ secrets.HOST }} "cd /app && docker-compose up -d"
+          ssh -i ssh_key_path ${{ secrets.USERNAME }}@${{ secrets.HOST }} "cd /app && docker-compose up -d"
