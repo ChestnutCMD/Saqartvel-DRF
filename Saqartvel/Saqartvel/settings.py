@@ -152,7 +152,7 @@ LOGGING = {
         'file': {
             'formatter': 'main_format',
             'class': 'logging.FileHandler',
-            'filename': 'info.txt',
+            'filename': 'logs/info.txt',
         },
     },
     'loggers': {
