@@ -29,7 +29,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'rest_framework.authtoken',
     'api',
-    # 'drf_spectacular',
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
@@ -127,12 +127,13 @@ REST_FRAMEWORK = {
                                        'rest_framework.authentication.TokenAuthentication',
                                        'rest_framework.authentication.SessionAuthentication'
                                        ],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 CSRF_TRUSTED_ORIGINS = ['https://saqartvel.store']
 
-# SPECTACULAR_SETTINGS = {
-#     'TITLE': 'Saqartvel',
-#     'DESCRIPTION': 'Discounts',
-#     'VERSION': '1.0.0'
-# }
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Saqartvel',
+    'DESCRIPTION': 'Discounts',
+    'VERSION': '1.0.0'
+}
