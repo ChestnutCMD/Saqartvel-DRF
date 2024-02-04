@@ -10,7 +10,9 @@ services:
     environment:
       DB_HOST: postgres
     volumes:
-      - ./logs:/logs
+      - type: bind
+        source: ./logs/info.txt
+        target: /logs/info.txt
     depends_on:
       postgres:
         condition: service_healthy
