@@ -136,7 +136,7 @@ SPECTACULAR_SETTINGS = {
     'VERSION': '1.0.0'
 }
 
-# Logging into 'log.txt'
+# Logging into 'info.log'
 
 LOGGING = {
     'version': 1,
@@ -152,7 +152,7 @@ LOGGING = {
         'file': {
             'formatter': 'main_format',
             'class': 'logging.FileHandler',
-            'filename': 'logs/log.txt',
+            'filename': 'logs/info.log',
         },
     },
     'loggers': {

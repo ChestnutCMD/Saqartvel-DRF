@@ -10,7 +10,7 @@ services:
     environment:
       DB_HOST: postgres
     volumes:
-      - ${PWD}/log:/logs
+      - logs:/logs/info.log
     depends_on:
       postgres:
         condition: service_healthy
@@ -37,3 +37,4 @@ services:
 
 volumes:
   pg_data:
+  logs:
