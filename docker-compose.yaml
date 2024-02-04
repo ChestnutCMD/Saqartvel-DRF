@@ -11,8 +11,8 @@ services:
       DB_HOST: postgres
     volumes:
       - type: bind
-        source: ./logs/info.txt
-        target: /logs/info.txt
+        source: ./logs/logs.txt
+        target: /logs/logs.txt
     depends_on:
       postgres:
         condition: service_healthy
