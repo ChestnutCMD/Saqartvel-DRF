@@ -10,7 +10,7 @@ services:
     environment:
       DB_HOST: postgres
     volumes:
-      - $PWD/info.log:/app/info.log
+      - $PWD/Saqartvel/info.log:/app/info.log
     depends_on:
       postgres:
         condition: service_healthy
