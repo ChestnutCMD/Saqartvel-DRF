@@ -9,6 +9,8 @@ services:
       - ./.env
     environment:
       DB_HOST: postgres
+    volumes:
+      - ./info.log:app/info.log
     depends_on:
       postgres:
         condition: service_healthy
@@ -35,3 +37,4 @@ services:
 
 volumes:
   pg_data:
+  info.log:

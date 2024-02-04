@@ -137,3 +137,31 @@ SPECTACULAR_SETTINGS = {
     'DESCRIPTION': 'Discounts',
     'VERSION': '1.0.0'
 }
+
+# Logging into 'info.log'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+
+    'formatters': {
+        'main_format': {
+            'format': '{asctime} - {levelname} - {module} - {filename} - {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'file': {
+            'formatter': 'main_format',
+            'class': 'logging.FileHandler',
+            'filename': 'info.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': getenv('DJANGO_LOG_LEVEL'),
+            'propagate': True,
+        },
+    },
+}
