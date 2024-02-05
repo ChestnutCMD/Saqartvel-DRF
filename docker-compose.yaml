@@ -11,7 +11,7 @@ services:
       DB_HOST: postgres
     volumes:
       - ./logs:/logs
-      command: /bin/sh -c "mkdir -p /logs && touch /logs/info.log && tail -f /dev/null"
+    command: /bin/sh -c "mkdir -p /logs && touch /logs/info.log && tail -f /dev/null"
     depends_on:
       postgres:
         condition: service_healthy
