@@ -48,4 +48,4 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           script: |
             cd app
-            echo ${{ secrets.PASSWORD }} | sudo -S docker-compose up -d && sudo -S docker system prune -a
+            echo ${{ secrets.PASSWORD }} | sudo -S docker-compose up -d && sudo -S docker system prune -a -f
