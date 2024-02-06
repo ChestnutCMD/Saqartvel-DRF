@@ -25,10 +25,7 @@ jobs:
       - name: clone code
         uses: actions/checkout@v2
       - name: render configs
-        run: |
-          if [ ! -d "deploy" ]; then
-            mkdir deploy
-          fi
+        run: |          
           cat deploy/docker-compose.yaml | envsubst > deploy/docker-compose.yaml
           cat deploy/.env | envsubst > deploy/.env
       - name: copy files to server
