@@ -25,9 +25,14 @@ jobs:
       - name: clone code
         uses: actions/checkout@v2
       - name: render configs
-        run: |          
-          cat deploy/docker-compose.yaml | envsubst > deploy/docker-compose.yaml
-          cat deploy/.env | envsubst > deploy/.env
+        run: |
+          if [ ! -d "deploy" ]; then
+            mkdir deploy
+          fi
+          cat deploy/docker-compose.yaml | envsubst > deploy/tmp.docker-compose.yaml
+          mv deploy/tmp.docker-compose.yaml deploy/docker-compose.yaml
+          cat deploy/.env | envsubst > deploy/tmp.env
+          mv deploy/tmp.env deploy/.env
       - name: copy files to server
         uses: appleboy/scp-action@master
         with:
