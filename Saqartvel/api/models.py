@@ -52,7 +52,7 @@ class Venue(BaseModel):
     telephone = models.CharField(max_length=255, null=True)
     url = models.CharField(max_length=2000)
     rating = models.FloatField(null=True)
-    images = models.CharField(null=True)
+    images = models.ImageField(upload_to='images/', blank=True)
     address = models.CharField(max_length=2000, null=True)
     subcategory = models.ForeignKey(Subcategory, related_name='subcategory', on_delete=models.SET_NULL, null=True)
 

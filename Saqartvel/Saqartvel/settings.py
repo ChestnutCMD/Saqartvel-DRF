@@ -1,3 +1,4 @@
+import cloudinary_storage
 from os import getenv
 from pathlib import Path
 
@@ -24,7 +25,9 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'cloudinary_storage',
     'django.contrib.staticfiles',
+    'cloudinary',
     'rest_framework',
     'rest_framework_simplejwt',
     'rest_framework.authtoken',
@@ -163,3 +166,12 @@ LOGGING = {
         },
     },
 }
+
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': getenv('CLOUD_NAME'),
+    'API_KEY': getenv('API_KEY'),
+    'API_SECRET': getenv('API_SECRET')
+}
+MEDIA_URL = '/media/'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
