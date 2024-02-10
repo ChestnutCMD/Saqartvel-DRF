@@ -17,7 +17,7 @@ class User(AbstractUser):
 
 class BaseModel(models.Model):
     title = models.CharField(max_length=100)
-    slug = models.SlugField(max_length=100, unique=True, null=True, validators=[MinLengthValidator(3)])
+    slug = models.SlugField(max_length=100, unique=True, null=True, blank=True, validators=[MinLengthValidator(3)])
 
     def __str__(self):
         return self.title
