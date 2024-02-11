@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from api.models import Category, Subcategory, Venue, User
+from api.models import Category, Subcategory, Venue, User, Image
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -25,8 +25,9 @@ admin.site.register(Subcategory, SubcategoryAdmin)
 
 
 class VenueAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'slug', 'subcategory', 'url', 'description', 'telephone', 'address', 'images')
-    list_display_links = ('title', 'subcategory', 'url', 'images')
+
+    list_display = ('id', 'title', 'slug', 'subcategory', 'url', 'description', 'telephone', 'address')
+    list_display_links = ('title', 'subcategory', 'url')
     search_fields = ('title',)
     readonly_fields = ('id',)
     list_filter = ('subcategory',)
@@ -34,3 +35,4 @@ class VenueAdmin(admin.ModelAdmin):
 
 admin.site.register(Venue, VenueAdmin)
 admin.site.register(User)
+admin.site.register(Image)

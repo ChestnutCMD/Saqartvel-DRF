@@ -30,7 +30,6 @@ INSTALLED_APPS = [
     'cloudinary',
     'rest_framework',
     'rest_framework_simplejwt',
-    'rest_framework.authtoken',
     'api',
     'drf_spectacular',
 ]
@@ -166,7 +165,6 @@ LOGGING = {
         },
     },
 }
-
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': getenv('CLOUD_NAME'),

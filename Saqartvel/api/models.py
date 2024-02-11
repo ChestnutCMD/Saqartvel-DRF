@@ -47,12 +47,27 @@ class Subcategory(BaseModel):
         verbose_name_plural = 'Подкатегории'
 
 
+class Image(models.Model):
+    image = models.ImageField(upload_to='images/')
+    # url = models.CharField(max_length=255, blank=True)
+    #
+    # def save(self, *args, **kwargs):
+    #     self.url = 'https://res.cloudinary.com/dk2ncioda/image/upload/v1/media/images/' + str(self.image.name)
+
+    def __str__(self):
+        return self.image.name
+
+    class Meta:
+        verbose_name = 'Изображение'
+        verbose_name_plural = 'Изображения'
+
+
 class Venue(BaseModel):
     description = models.CharField(max_length=2000, null=True)
     telephone = models.CharField(max_length=255, null=True)
     url = models.CharField(max_length=2000)
     rating = models.FloatField(null=True)
-    images = models.ImageField(upload_to='images/', blank=True)
+    images = models.ManyToManyField(Image, blank=True)
     address = models.CharField(max_length=2000, null=True)
     subcategory = models.ForeignKey(Subcategory, related_name='subcategory', on_delete=models.SET_NULL, null=True)
 
